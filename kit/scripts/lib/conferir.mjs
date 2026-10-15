@@ -28,7 +28,7 @@ export async function gradeDeQuadros(video, cards, destinoBase) {
     for (const variante of ["limpa", "rosto"]) {
       for (let i = 0; i < lista.length; i++) {
         const c = lista[i];
-        const t = Math.min(c.fim - 0.5, c.inicio + Math.min(1.4, c.duracao / 2));
+        const t = Math.min(c.fim - 0.6, c.inicio + 2.2); // já assentado (contador pronto), antes da saída
         const filtros = ["scale=360:640"];
         if (variante === "rosto") {
           const e = 360 / 1080;

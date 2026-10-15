@@ -4,6 +4,7 @@
 //   npm run editar -- --rascunho          render rápido em qualidade baixa (para acertar tempo e posição)
 //   npm run editar -- --preparar          só normaliza, transcreve e acha o rosto (para preencher o cards.json)
 //   npm run editar -- --exemplo           usa o cards.exemplo.json no lugar do cards.json
+//   npm run editar -- --so-conferir       refaz só a conferência (números e grade) do vídeo já renderizado
 //   npm run editar -- --forcar            refaz tudo, mesmo que já esteja pronto
 //   npm run editar -- --entrada nome.mp4  escolhe o arquivo quando há mais de um em entrada/
 import fs from "node:fs";
@@ -23,13 +24,14 @@ const VERSAO_PIPELINE = "k1-1"; // muda quando a normalização muda, para refaz
 const EXTENSOES = [".mp4", ".mov", ".m4v", ".mkv", ".webm", ".avi"];
 
 function lerArgs(argv) {
-  const a = { rascunho: false, preparar: false, exemplo: false, forcar: false, semCheck: false, entrada: null };
+  const a = { rascunho: false, preparar: false, exemplo: false, forcar: false, semCheck: false, soConferir: false, entrada: null };
   for (let i = 0; i < argv.length; i++) {
     const v = argv[i];
     if (v === "--rascunho") a.rascunho = true;
     else if (v === "--preparar") a.preparar = true;
     else if (v === "--exemplo") a.exemplo = true;
     else if (v === "--forcar") a.forcar = true;
+    else if (v === "--so-conferir") a.soConferir = true;
     else if (v === "--sem-check") a.semCheck = true;
     else if (v === "--entrada") a.entrada = argv[++i];
     else falhar(`Opção desconhecida: ${v}`);
@@ -136,6 +138,10 @@ async function principal() {
   fs.writeFileSync(caminho("index.html"), gerarIndex({ duracao, videoSrc: "trabalho/video.mp4", vozSrc: "trabalho/voz.wav" }));
 
   const cli = cliHyperframes();
+  const nomeSaida = path.join(PASTA_SAIDA, `${base}-${args.rascunho ? "rascunho" : "editado"}.mp4`);
+  if (args.soConferir) {
+    if (!fs.existsSync(nomeSaida)) falhar(`Não achei ${path.relative(RAIZ, nomeSaida)}: rode o render primeiro.`);
+  } else {
   if (!args.semCheck) {
     passo(5, "Conferindo o projeto (hyperframes check)");
     const r = await rodar(process.execPath, [cli, "check"]);
@@ -146,7 +152,6 @@ async function principal() {
 
   // e) render
   const qualidade = args.rascunho ? "draft" : "delivery";
-  const nomeSaida = path.join(PASTA_SAIDA, `${base}-${args.rascunho ? "rascunho" : "editado"}.mp4`);
   passo(6, `Renderizando (${qualidade}) em ${path.relative(RAIZ, nomeSaida)}. Pode levar vários minutos.`);
   const inicioRender = Date.now();
   const batida = setInterval(() => log(`   ...renderizando há ${seg(Date.now() - inicioRender)}`), 60000);
@@ -157,6 +162,7 @@ async function principal() {
     }
   } finally {
     clearInterval(batida);
+  }
   }
 
   // conferência com números e quadros
