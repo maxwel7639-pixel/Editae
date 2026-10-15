@@ -24,4 +24,4 @@ Um ponto por vez, na ordem. Detalhe em `docs/PLANO.md`. **[OK do Maxwel]** = só
 
 | Data | Ponto | Branch | Prova |
 |---|---|---|---|
-| | | | |
+| 15/10/2026 | K1 | `k1-estilo-a` | ffprobe: h264 1080x1920 yuv420p, 30/1, 1500 quadros, 50,0 s; ebur128: I -14,0 LUFS, LRA 2,4 LU, pico -1,7 dBFS. Grade de 12 quadros tirada pelo Maestro do vídeo final: 11 cards no topo, nenhum encosta no rosto (detecção UltraFace achou o rosto em 100/100 quadros). Vídeo de teste e gerados fora do git. Pendências: ordem dos passos empilhados (o 3 aparece acima do 2 em 21 s); `kit/docs/POSICAO-DOS-CARDS.md` cita o vídeo do Maxwel; HDR do iPhone sem teste com clipe real; GSAP via CDN no render |
