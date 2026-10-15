@@ -1,0 +1,11 @@
+node_modules/
+.next/
+.env
+.env.*
+!.env.example
+*.log
+kit/entrada/*
+kit/saida/*
+!kit/entrada/.gitkeep
+!kit/saida/.gitkeep
+.vercel/
