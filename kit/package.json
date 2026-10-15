@@ -1,0 +1,16 @@
+{
+  "name": "editae-kit",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Editaê: o editor de Reels que roda na sua máquina.",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "editar": "node scripts/editar.mjs",
+    "verificar": "npx hyperframes check"
+  },
+  "dependencies": {
+    "hyperframes": "0.8.137",
+    "onnxruntime-web": "1.22.0"
+  }
+}

@@ -9,3 +9,11 @@ kit/saida/*
 !kit/entrada/.gitkeep
 !kit/saida/.gitkeep
 .vercel/
+
+# Kit: tudo que é gerado a partir do vídeo do cliente (dado pessoal) fica fora do git.
+kit/trabalho/
+kit/index.html
+kit/cards.json
+kit/.quadros-*/
+*.rgb
+kit/snapshots/
