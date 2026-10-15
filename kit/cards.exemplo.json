@@ -1,0 +1,10 @@
+{
+  "cor": "#7FA6FF",
+  "cards": [
+    { "inicio": 2.0, "duracao": 2.6, "tipo": "texto", "icone": "mensagem", "titulo": "Nova mensagem", "texto": "Aqui está o link que você pediu" },
+    { "inicio": 6.0, "duracao": 4.0, "tipo": "numero", "valor": "700", "rotulo": "comentários em um dia" },
+    { "inicio": 12.0, "duracao": 3.2, "tipo": "passo", "numero": 1, "titulo": "Escolha o post", "texto": "Qualquer Reel ou foto do perfil" },
+    { "inicio": 15.4, "duracao": 3.2, "tipo": "passo", "numero": 2, "titulo": "Escolha a palavra" },
+    { "inicio": 20.0, "duracao": 3.0, "tipo": "texto", "icone": "check", "titulo": "Tudo certo", "texto": "A resposta sai sozinha" }
+  ]
+}
